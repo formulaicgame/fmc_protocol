@@ -36,3 +36,6 @@ pub use interfaces::{
 
 mod audio;
 pub use audio::{EnableClientAudio, Sound};
+
+mod particles;
+pub use particles::ParticleEffect;

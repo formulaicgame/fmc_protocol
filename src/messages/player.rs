@@ -9,10 +9,6 @@ pub struct PlayerAabb {
     pub half_extents: Vec3,
 }
 
-// TODO: This doesn't need to be f64, the server can just convert it. The velocity is also only
-// sent for convenience, it's slightly hard to compute server side, and since I haven't thought
-// about validation the client might as well abuse it.
-//
 /// A player's position. Used by client to report its position or for the server to dictate.
 #[derive(ClientBound, ServerBound, Event, Serialize, Deserialize, Debug, Clone)]
 pub struct PlayerPosition {
