@@ -9,9 +9,11 @@ pub struct Sound {
     /// Position the sound should be emitted from. If "None", the sound will be heard uniformly from
     /// all directions.
     pub position: Option<DVec3>,
+    /// The volume the sound will be played at, [0..1]
+    pub volume: f32,
     // TODO: Make this into an integer id to save bandwidth.
     //
-    /// Sound that should be played.
+    /// Path to sound that should be played.
     pub sound: String,
 }
 
