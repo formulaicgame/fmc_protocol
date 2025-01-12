@@ -11,6 +11,8 @@ pub struct Sound {
     pub position: Option<DVec3>,
     /// The volume the sound will be played at, [0..1]
     pub volume: f32,
+    /// Playback speed
+    pub speed: f32,
     // TODO: Make this into an integer id to save bandwidth.
     //
     /// Path to sound that should be played.
