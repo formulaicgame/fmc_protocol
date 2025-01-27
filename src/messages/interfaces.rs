@@ -150,81 +150,90 @@ pub struct InterfaceEquipItem {
     pub index: u32,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize, Default)]
-pub struct Text {
+// #[derive(Clone, Debug, Serialize, Deserialize, Default)]
+// pub struct Text {
+//     pub text: String,
+//     pub font_size: f32,
+//     // Hex, if it is malformed it will default to white.
+//     pub color: String,
+// }
+
+// TODO: Same problem as above, should contain TextAlignment and BreakLineOn
+// #[derive(Clone, Debug, Serialize, Deserialize, Default)]
+// pub struct Line {
+//     pub index: i32,
+//     pub sections: Vec<Text>,
+// }
+//
+// impl Line {
+//     pub fn with_text(&mut self, text: String, font_size: f32, color: &str) -> &mut Self {
+//         self.sections.push(Text {
+//             text,
+//             font_size,
+//             color: color.to_owned(),
+//         });
+//         self
+//     }
+// }
+
+/// A text update for a text box
+#[derive(ClientBound, Event, Serialize, Deserialize, Debug, Clone, Default)]
+pub struct InterfaceTextUpdate {
+    /// Interface identifier, formatted like "root/child/grandchild/..etc", e.g.
+    /// "chat/history"
+    pub interface_path: String,
+    /// Index in the interface it should be inserted at
+    pub index: i32,
+    /// Visible text
     pub text: String,
+    /// Font size rendered at
     pub font_size: f32,
-    // Hex, if it is malformed it will default to white.
+    /// Hex color, if it is malformed it will default to white.
     pub color: String,
 }
 
-// TODO: Same problem as above, should contain TextAlignment and BreakLineOn
-#[derive(Clone, Debug, Serialize, Deserialize, Default)]
-pub struct Line {
-    pub index: i32,
-    pub sections: Vec<Text>,
-}
-
-impl Line {
-    pub fn with_text(&mut self, text: String, font_size: f32, color: &str) -> &mut Self {
-        self.sections.push(Text {
-            text,
-            font_size,
-            color: color.to_owned(),
-        });
-        self
-    }
-}
-
-/// A set of text updates for a text container
-#[derive(ClientBound, Event, Serialize, Deserialize, Debug, Clone, Default)]
-pub struct InterfaceTextUpdate {
-    pub interface_path: String,
-    pub lines: Vec<Line>,
-}
-
-impl InterfaceTextUpdate {
-    pub fn new(interface_path: &str) -> Self {
-        Self {
-            interface_path: interface_path.to_owned(),
-            lines: Vec::new(),
-        }
-    }
-
-    /// Appends a line to the end of the textbox
-    pub fn append_line(&mut self) -> &mut Line {
-        self.lines.push(Line {
-            index: i32::MAX,
-            sections: Vec::new(),
-        });
-        self.lines.last_mut().unwrap()
-    }
-
-    /// Prepends a line to the beginning of the textbox
-    pub fn prepend_line(&mut self) -> &mut Line {
-        self.lines.push(Line {
-            index: -1,
-            sections: Vec::new(),
-        });
-        self.lines.last_mut().unwrap()
-    }
-
-    /// Changes the line at the supplied index.
-    pub fn change_line(&mut self, index: i32) -> &mut Line {
-        self.lines.push(Line {
-            index,
-            sections: Vec::new(),
-        });
-        self.lines.last_mut().unwrap()
-    }
-
-    pub fn remove_line(&mut self, index: i32) {
-        self.lines.push(Line {
-            index,
-            sections: Vec::new(),
-        });
-    }
-}
+// impl InterfaceTextUpdate {
+//     pub fn new(interface_path: &str) -> Self {
+//         Self {
+//             interface_path: interface_path.to_owned(),
+//             lines: Vec::new(),
+//         }
+//     }
+//
+//     /// Appends a line to the end of the textbox
+//     pub fn append_line(&mut self) -> &mut Line {
+//         self.lines.push(Line {
+//             index: i32::MAX,
+//             sections: Vec::new(),
+//         });
+//         self.lines.last_mut().unwrap()
+//     }
+//
+//     /// Prepends a line to the beginning of the textbox
+//     pub fn prepend_line(&mut self) -> &mut Line {
+//         self.lines.push(Line {
+//             index: -1,
+//             sections: Vec::new(),
+//         });
+//         self.lines.last_mut().unwrap()
+//     }
+//
+//     /// Changes the line at the supplied index.
+//     pub fn change_line(&mut self, index: i32) -> &mut Line {
+//         self.lines.push(Line {
+//             index,
+//             sections: Vec::new(),
+//         });
+//         self.lines.last_mut().unwrap()
+//     }
+//
+//     pub fn remove_line(&mut self, index: i32) {
+//         self.lines.push(Line {
+//             index,
+//             sections: Vec::new(),
+//         });
+//     }
+// }
 
 /// Send the server the content of a text box
 #[derive(ServerBound, Serialize, Deserialize, Debug, Clone, Default)]
