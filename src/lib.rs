@@ -69,6 +69,7 @@ pub enum MessageType {
     EnableClientAudio,
     Sound,
     ParticleEffect,
+    Plugin,
     // XXX: Always keep this at the bottom, occupies highest discriminant spot, so that when you
     // deserialize a MessageType, you can know that only values below 'MessageType::MAX as u8' are
     // valid.

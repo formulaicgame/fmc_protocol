@@ -39,3 +39,6 @@ pub use audio::{EnableClientAudio, Sound};
 
 mod particles;
 pub use particles::ParticleEffect;
+
+mod plugins;
+pub use plugins::Plugin;
