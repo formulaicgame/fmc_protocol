@@ -14,8 +14,6 @@ pub struct PlayerAabb {
 pub struct PlayerPosition {
     /// Position of the player.
     pub position: DVec3,
-    /// Velocity of the player
-    pub velocity: DVec3,
 }
 
 /// The position the server wants to place the player's camera in.
