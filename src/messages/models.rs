@@ -116,6 +116,11 @@ pub struct ModelPlayAnimation {
     pub model_id: u32,
     /// Index of the animation
     pub animation_index: u32,
+    /// Restart the animation if it's already playing
+    pub restart: bool,
     /// Makes the animation loop
     pub repeat: bool,
+    /// Replace an old animation with this one,
+    /// (animation_index, transition_time)
+    pub transition: Option<(u32, f32)>,
 }

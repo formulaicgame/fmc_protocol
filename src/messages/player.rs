@@ -31,12 +31,18 @@ pub struct PlayerCameraRotation {
 }
 
 /// Send a left click to the server
-#[derive(ServerBound, Serialize, Deserialize, Debug, Clone)]
-pub struct LeftClick;
+#[derive(ServerBound, Serialize, Deserialize, Debug, Clone, PartialEq, Eq)]
+pub enum LeftClick {
+    Press,
+    Release,
+}
 
 /// Send a right click to the server.
-#[derive(ServerBound, Serialize, Deserialize, Debug, Clone)]
-pub struct RightClick;
+#[derive(ServerBound, Serialize, Deserialize, Debug, Clone, PartialEq, Eq)]
+pub enum RightClick {
+    Press,
+    Release,
+}
 
 /// Notify the server of the client's render distance
 #[derive(ServerBound, Serialize, Deserialize, Debug, Clone)]
