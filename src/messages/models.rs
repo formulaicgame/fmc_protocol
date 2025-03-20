@@ -44,9 +44,7 @@ pub struct SpawnCustomModel {
     pub mesh_normals: Vec<[f32; 3]>,
     /// Texture uvs
     pub mesh_uvs: Option<Vec<[f32; 2]>>,
-    /// Base color, hex encoded srgb
-    pub material_base_color: String,
-    /// Color texture of the mesh, pre-light color is material_base_color * this texture
+    /// Color texture of the mesh
     pub material_color_texture: Option<String>,
     /// Texture used for parallax mapping
     pub material_parallax_texture: Option<String>,
@@ -70,7 +68,6 @@ impl Default for SpawnCustomModel {
             mesh_vertices: Vec::new(),
             mesh_normals: Vec::new(),
             mesh_uvs: None,
-            material_base_color: "FFFFFF".to_owned(),
             material_color_texture: None,
             material_parallax_texture: None,
             material_alpha_mode: 0,
@@ -123,4 +120,13 @@ pub struct ModelPlayAnimation {
     /// Replace an old animation with this one,
     /// (animation_index, transition_time)
     pub transition: Option<(u32, f32)>,
+}
+
+/// Change the base color of a model's material
+#[derive(ClientBound, Event, Serialize, Deserialize, Debug, Clone)]
+pub struct ModelColor {
+    /// Id of the model
+    pub id: u32,
+    /// Color formated as hex, "RRGGBBAA"
+    pub color: String,
 }

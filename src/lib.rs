@@ -18,20 +18,7 @@ mod network_message;
 pub mod messages;
 pub use network_message::{ClientBound, ServerBound};
 
-// TODO: I want to increase block ids from u16 to u32. Doubling the memory size is bad. Instead
-// replace the blocks a chunk holds with substitutes, and keep a mapping from substitute values to
-// block ids. Then you can have 'lookup: Vec<BlockId>' and 'blocks: Vec<u16>', take the value you want
-// from 'blocks' cast it to usize and index into the lookup with it, you now have the block id.
-// This may even allow reducing the in-transit size by using even smaller types. I need to measure
-// but I assume most chunks don't consist of more than a handful of blocks. Maybe it can go all the
-// way down to 4 bits per block for most chunks, in which case keeping it in memory is a good trade
-// off for not having to build the representation each time it is sent.
-//
-// TODO: Should probably define BlockState here too, to avoid hard to parse u16's and easier to
-// change data type.
-//
 /// Storage type of blocks.
-/// Used by both server and client.
 type BlockId = u16;
 
 #[derive(Debug, PartialEq, Eq)]
@@ -46,11 +33,12 @@ pub enum MessageType {
     Time,
     Chunk,
     BlockUpdates,
+    NewModel,
     DeleteModel,
     ModelPlayAnimation,
     ModelUpdateAsset,
     ModelUpdateTransform,
-    NewModel,
+    ModelColor,
     SpawnCustomModel,
     LeftClick,
     RightClick,

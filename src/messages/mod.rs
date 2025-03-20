@@ -15,7 +15,7 @@ pub use blocks::BlockUpdates;
 /// Things like players, the sun/skybox, arrows. Everything that is not a block.
 mod models;
 pub use models::{
-    DeleteModel, ModelPlayAnimation, ModelUpdateAsset, ModelUpdateTransform, NewModel,
+    DeleteModel, ModelColor, ModelPlayAnimation, ModelUpdateAsset, ModelUpdateTransform, NewModel,
     SpawnCustomModel,
 };
 
