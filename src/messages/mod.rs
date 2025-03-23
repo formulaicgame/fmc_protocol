@@ -41,4 +41,4 @@ mod particles;
 pub use particles::ParticleEffect;
 
 mod plugins;
-pub use plugins::Plugin;
+pub use plugins::{Plugin, PluginData};
