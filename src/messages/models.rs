@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 pub struct NewModel {
     /// Id used to reference it when updating. If the same id is sent twice, the old model will be
     /// replaced.
-    pub id: u32,
+    pub model_id: u32,
     /// Inherit position/rotation from another model. If the parent transform changes, this model
     /// will change in the same way.
     pub parent_id: Option<u32>,
@@ -26,7 +26,7 @@ pub struct NewModel {
 pub struct SpawnCustomModel {
     /// Id used to reference it when updating. If the same id is sent twice, the old model will be
     /// replaced.
-    pub id: u32,
+    pub model_id: u32,
     /// Inherit position/rotation from another model. If the parent transform changes, this model
     /// will change in the same way.
     pub parent_id: Option<u32>,
@@ -59,7 +59,7 @@ pub struct SpawnCustomModel {
 impl Default for SpawnCustomModel {
     fn default() -> Self {
         Self {
-            id: 0,
+            model_id: 0,
             parent_id: None,
             position: DVec3::ZERO,
             rotation: Quat::IDENTITY,
@@ -81,14 +81,14 @@ impl Default for SpawnCustomModel {
 #[derive(ClientBound, Event, Serialize, Deserialize, Debug, Clone)]
 pub struct DeleteModel {
     /// Id of the model
-    pub id: u32,
+    pub model_id: u32,
 }
 
 /// Update the asset used by a model.
 #[derive(ClientBound, Event, Serialize, Deserialize, Debug, Clone)]
 pub struct ModelUpdateAsset {
     /// Id of the model
-    pub id: u32,
+    pub model_id: u32,
     /// Asset id
     pub asset: u32,
 }
@@ -97,7 +97,7 @@ pub struct ModelUpdateAsset {
 #[derive(ClientBound, Event, Serialize, Deserialize, Debug, Clone)]
 pub struct ModelUpdateTransform {
     /// Id of the model
-    pub id: u32,
+    pub model_id: u32,
     /// Position update
     pub position: DVec3,
     /// Rotation update
@@ -126,7 +126,7 @@ pub struct ModelPlayAnimation {
 #[derive(ClientBound, Event, Serialize, Deserialize, Debug, Clone)]
 pub struct ModelColor {
     /// Id of the model
-    pub id: u32,
+    pub model_id: u32,
     /// Color formated as hex, "RRGGBBAA"
     pub color: String,
 }

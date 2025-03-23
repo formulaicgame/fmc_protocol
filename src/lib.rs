@@ -47,6 +47,7 @@ pub enum MessageType {
     PlayerCameraPosition,
     PlayerCameraRotation,
     PlayerPosition,
+    PlayerVelocity,
     InterfaceEquipItem,
     InterfaceInteraction,
     InterfaceItemBoxUpdate,
