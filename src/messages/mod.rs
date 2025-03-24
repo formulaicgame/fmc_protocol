@@ -23,7 +23,7 @@ pub use models::{
 mod player;
 pub use player::{
     LeftClick, PlayerAabb, PlayerCameraPosition, PlayerCameraRotation, PlayerPosition,
-    PlayerVelocity, RenderDistance, RightClick,
+    RenderDistance, RightClick,
 };
 
 /// User interface

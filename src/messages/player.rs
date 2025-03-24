@@ -16,13 +16,6 @@ pub struct PlayerPosition {
     pub position: DVec3,
 }
 
-/// A player's velocity.
-#[derive(ClientBound, Event, Serialize, Deserialize, Debug, Clone)]
-pub struct PlayerVelocity {
-    /// New player velocity
-    pub velocity: DVec3,
-}
-
 /// The position the server wants to place the player's camera in.
 #[derive(ClientBound, Event, Serialize, Deserialize, Debug, Clone)]
 pub struct PlayerCameraPosition {
