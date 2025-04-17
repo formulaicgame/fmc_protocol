@@ -22,6 +22,7 @@ pub struct NewModel {
     pub asset: u32,
 }
 
+/// Spawn a custom model that is not part of the assets
 #[derive(ClientBound, Event, Serialize, Deserialize, Debug, Clone)]
 pub struct SpawnCustomModel {
     /// Id used to reference it when updating. If the same id is sent twice, the old model will be
