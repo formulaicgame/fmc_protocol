@@ -54,6 +54,7 @@ pub enum MessageType {
     InterfaceTextInput,
     InterfaceTextUpdate,
     InterfaceVisibilityUpdate,
+    GuiSetting,
     EnableClientAudio,
     Sound,
     ParticleEffect,

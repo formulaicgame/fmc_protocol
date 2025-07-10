@@ -29,7 +29,7 @@ pub use player::{
 /// User interface
 mod interfaces;
 pub use interfaces::{
-    InterfaceEquipItem, InterfaceInteraction, InterfaceItemBoxUpdate,
+    GuiSetting, InterfaceEquipItem, InterfaceInteraction, InterfaceItemBoxUpdate,
     InterfaceNodeVisibilityUpdate, InterfaceTextInput, InterfaceTextUpdate,
     InterfaceVisibilityUpdate,
 };

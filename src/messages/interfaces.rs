@@ -243,3 +243,40 @@ pub struct InterfaceTextInput {
     /// The content of the text box
     pub text: String,
 }
+
+/// Set the value of a setting in the client's settings interface.
+#[derive(ClientBound, ServerBound, Event, Serialize, Deserialize, Debug, Clone)]
+pub enum GuiSetting {
+    /// Input text box
+    TextBox {
+        /// Name of the setting
+        name: String,
+        /// New entry
+        value: String,
+    },
+    /// List of buttons that can be selected between, ordered from left to right
+    ButtonSelection {
+        /// Name of the setting
+        name: String,
+        /// Index of the new button
+        selected: usize,
+    },
+    Slider {
+        /// Name of the setting
+        name: String,
+        /// New value
+        value: f32,
+    },
+    Switch {
+        /// Name of the setting
+        name: String,
+        /// If the switch should be on or off
+        on: bool,
+    },
+    Dropdown {
+        /// Name of the setting
+        name: String,
+        /// Index of the selected value
+        selected: usize,
+    },
+}
